@@ -1,29 +1,27 @@
-import CreateGame from "./components/CreateGame/CreateGame";
-import DetailsGame from "./components/DetailsGame/DetailsGame";
-import LoginPage from "./components/LoginPage/LoginPage";
 import NavPage from "./components/NavPage/NavPage";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
-import WelcomeWorld from "./components/HomePage/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import CatalogGame from "./components/CatalogGame/CatalogGame";
-
+import LoginPage from "./components/LoginPage/LoginPage";
+import { useState } from "react";
 function App() {
+  const router = {
+    '/home': <HomePage />,
+    '/allGames': <CatalogGame />,
+    '/login': <LoginPage />
+  }
+  let [page, setPage] = useState('/home')
+  const navigationChangeHandler = (path) => {
+    setPage(path);
+  }
   return (
     <div id="box">
-      <NavPage />
+      <NavPage navigationChangeHandler={navigationChangeHandler}/>
 
       <main id="main-content">
-        <WelcomeWorld />
+        {router[page] || <p> No Page </p>}
       </main>
 
-      <LoginPage />
 
-      <RegisterPage />
-
-      <CreateGame />
-
-      <DetailsGame />      
-
-      <CatalogGame />
     </div>
 
 

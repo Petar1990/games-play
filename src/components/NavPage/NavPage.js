@@ -1,16 +1,27 @@
-const NavPage = () => {
+const NavPage = ({
+    navigationChangeHandler,
+}) => {
+    const onClickHeader=(event) => {
+        event.preventDefault();
+        if(event.target.tagName === "A") {
+            let url = new URL(event.target.href);
+            console.log(url.pathname);
+            navigationChangeHandler(url.pathname)
+        }
+    }
+
     return (
-        <header>
-            <h1><a className='home' href="#">GamesPlay</a></h1>
+        <header onClick={onClickHeader}>
+            <h1><a className='home' href="/home">GamesPlay</a></h1>
             <nav>
-                <a href="#">All games</a>
+                <a href="/allGames">All games</a>
                 <div id="user">
-                    <a href="#">Create Game</a>
-                    <a href="#">Logout</a>
+                    <a href="createGame">Create Game</a>
+                    <a href="logout">Logout</a>
                 </div>
                 <div id="guest">
-                    <a href="#">Login</a>
-                    <a href="#">Register</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
             </nav>
         </header>
