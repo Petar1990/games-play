@@ -1,4 +1,4 @@
-const Nav = () => {
+const NavPage = () => {
     return (
         <header>
             <h1><a className='home' href="#">GamesPlay</a></h1>
@@ -17,4 +17,4 @@ const Nav = () => {
     );
 }
 
-export default Nav;
+export default NavPage;

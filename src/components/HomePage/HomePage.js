@@ -1,4 +1,4 @@
-const WelcomeWorld = () => {
+const HomePage = () => {
 
     return (
         <section id="welcome-world">
@@ -55,4 +55,4 @@ const WelcomeWorld = () => {
     );
 }
 
-export default WelcomeWorld;
+export default HomePage;
