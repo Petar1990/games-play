@@ -1,21 +1,9 @@
+import Nav from "./components/Nav/Nav";
+
 function App() {
   return (
     <div id="box">
-      <header>
-        <h1><a className='home' href="#">GamesPlay</a></h1>
-        <nav>
-          <a href="#">All games</a>
-          <div id="user">
-            <a href="#">Create Game</a>
-            <a href="#">Logout</a>
-          </div>
-          <div id="guest">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
-          </div>
-        </nav>
-      </header>
-
+      <Nav />
       <main id="main-content">
       </main>
 
@@ -144,16 +132,16 @@ function App() {
 
             <h1>Edit Game</h1>
             <label htmlFor="leg-title">Legendary title:</label>
-            <input type="text" id="title" name="title"/>
+            <input type="text" id="title" name="title" />
 
             <label htmlFor="category">Category:</label>
-            <input type="text" id="category" name="category"/>
+            <input type="text" id="category" name="category" />
 
             <label htmlFor="levels">MaxLevel:</label>
-            <input type="number" id="maxLevel" name="maxLevel" min="1"/>
+            <input type="number" id="maxLevel" name="maxLevel" min="1" />
 
             <label htmlFor="game-img">Image:</label>
-            <input type="text" id="imageUrl" name="imageUrl"/>
+            <input type="text" id="imageUrl" name="imageUrl" />
 
             <label htmlFor="summary">Summary:</label>
             <textarea name="summary" id="summary"></textarea>
