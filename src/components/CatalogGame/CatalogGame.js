@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllGames } from "../../services/api/data";
-import GamesCard from "./GameCard/GameCard";
+import CatalogGameCard from "./CatalogGameCard";
 
-const CatalogGame = () => {
+const CatalogGame = ({
+  navigationChangeHandler
+}) => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,16 +20,19 @@ const CatalogGame = () => {
   }, [])
   function allGames(games) {
     return games.length !== 0
-      ? games.map(x => <GamesCard key={x._id} game={x} />)
+      ? games.map(x => <CatalogGameCard
+        navigationChangeHandler={navigationChangeHandler}
+        key={x._id}
+        game={x} />)
       : <h3 className="no-articles">No articles yet</h3>
   }
 
   return (
     <section id="catalog-page">
       <h1>All Games</h1>
-      { loading 
-      ? <h1>Loading...</h1>
-      : allGames(games)
+      {loading
+        ? <h1>Loading...</h1>
+        : allGames(games)
       }
     </section>
   );

@@ -11,8 +11,8 @@ export async function getAllGames() {
 export async function createMaterial(item) {
     return api.post('/data/posts', item);
 }
-export async function getCurrentMaterial(id) {
-    return api.get(`/data/posts/${id}`)
+export async function getGame(id) {
+    return api.get(`/data/games/${id}`)
 }
 export async function delItem(id) {
     return api.del(`/data/posts/${id}`)
