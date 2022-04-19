@@ -16,8 +16,8 @@ const NavPage = ({
             <nav>
                 <a href="/allGames">All games</a>
                 <div id="user">
-                    <a href="createGame">Create Game</a>
-                    <a href="logout">Logout</a>
+                    <a href="/createGame">Create Game</a>
+                    <a href="/logout">Logout</a>
                 </div>
                 <div id="guest">
                     <a href="/login">Login</a>

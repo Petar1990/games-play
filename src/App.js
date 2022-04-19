@@ -3,11 +3,16 @@ import HomePage from "./components/HomePage/HomePage";
 import CatalogGame from "./components/CatalogGame/CatalogGame";
 import LoginPage from "./components/LoginPage/LoginPage";
 import { useState } from "react";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
+import CreateGame from "./components/CreateGame/CreateGame";
+
 function App() {
   const router = {
     '/home': <HomePage />,
     '/allGames': <CatalogGame />,
-    '/login': <LoginPage />
+    '/login': <LoginPage />,
+    '/register': <RegisterPage />,
+    '/createGame': <CreateGame />
   }
   let [page, setPage] = useState('/home')
   const navigationChangeHandler = (path) => {
@@ -18,7 +23,7 @@ function App() {
       <NavPage navigationChangeHandler={navigationChangeHandler}/>
 
       <main id="main-content">
-        {router[page] || <p> No Page </p>}
+        {router[page] || <h1> No Page </h1>}
       </main>
 
 
