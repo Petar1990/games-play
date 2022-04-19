@@ -1,58 +1,41 @@
-const HomePage = () => {
+import { useState, useEffect } from "react";
+import { getLatestGame } from "../../services/api/data";
+import LatestGame from "./LatestGame";
 
-    return (
-        <section id="welcome-world">
+const HomePage = ({
+  navigationChangeHandler,
+}) => {
 
-        <div className="welcome-message">
-          <h2>ALL new games are</h2>
-          <h3>Only in GamesPlay</h3>
-        </div>
-        <img src="/images/four_slider_img01.png" alt="hero" />
+  const [games, setGames] = useState({});
+  useEffect(() => {
+    const allLatestGames = async () => {
+      const data = await getLatestGame();
+      setGames(data);
+    }
+    allLatestGames();
 
-        <div id="home-page">
-          <h1>Latest Games</h1>
+  }, [])
+  const latestGames = (games) => {
+    return games.length > 0
+      ? games.map(x => <LatestGame key={x._id} game={x} navigationChangeHandler={navigationChangeHandler} />)
+      : <p className="no-articles">No games yet</p>;
+  }
+  return (
+    <section id="welcome-world">
 
-          <div className="game">
-            <div className="image-wrap">
-              <img src="/images/CoverFire.png" />
-            </div>
-            <h3>Cover Fire</h3>
-            <div className="rating">
-              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
-            <div className="data-buttons">
-              <a href="#" className="btn details-btn">Details</a>
-            </div>
-          </div>
-          <div className="game">
-            <div className="image-wrap">
-              <img src="/images/ZombieLang.png" />
-            </div>
-            <h3>Zombie Lang</h3>
-            <div className="rating">
-              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
-            <div className="data-buttons">
-              <a href="#" className="btn details-btn">Details</a>
-            </div>
-          </div>
-          <div className="game">
-            <div className="image-wrap">
-              <img src="/images/MineCraft.png" />
-            </div>
-            <h3>MineCraft</h3>
-            <div className="rating">
-              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
-            <div className="data-buttons">
-              <a href="#" className="btn details-btn">Details</a>
-            </div>
-          </div>
+      <div className="welcome-message">
+        <h2>ALL new games are</h2>
+        <h3>Only in GamesPlay</h3>
+      </div>
+      <img src="/images/four_slider_img01.png" alt="hero" />
 
-          <p className="no-articles">No games yet</p>
-        </div>
-      </section>
-    );
+      <div id="home-page">
+        <h1>Latest Games</h1>
+        {latestGames(games)}
+
+      </div>
+    </section>
+  );
 }
 
 export default HomePage;

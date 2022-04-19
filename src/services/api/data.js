@@ -8,17 +8,23 @@ export async function getAllGames() {
     return api.get('/data/games?sortBy=_createdOn%20desc');
 }
 
+
+export async function getGame(id) {
+    return api.get(`/data/games/${id}`);
+}
+export async function getLatestGame() {
+    return api.get(`/data/games?sortBy=_createdOn%20desc&distinct=category`)
+}
+
 export async function createMaterial(item) {
     return api.post('/data/posts', item);
 }
-export async function getGame(id) {
-    return api.get(`/data/games/${id}`)
-}
+
 export async function delItem(id) {
-    return api.del(`/data/posts/${id}`)
+    return api.del(`/data/posts/${id}`);
 }
 export async function editCurrentMaterial(id, data) {
-    return api.put(`/data/posts/${id}`, data)
+    return api.put(`/data/posts/${id}`, data);
 }
 
 export async function getMyMaterials(userId) {
