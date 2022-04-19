@@ -1,38 +1,36 @@
+import { useEffect, useState } from "react";
+import { getAllGames } from "../../services/api/data";
+import GamesCard from "./GameCard/GameCard";
+
 const CatalogGame = () => {
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    return (
-        <section id="catalog-page">
-        <h1>All Games</h1>
-        <div className="allGames">
-          <div className="allGames-info">
-            <img src="/images/avatar-1.jpg" />
-            <h6>Action</h6>
-            <h2>Cover Fire</h2>
-            <a href="#" className="details-button">Details</a>
-          </div>
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      const data = getAllGames();
+      data.then(res => {
+        setGames(res);
+        setLoading(false);
+      });
+    }, 1000);
+  }, [])
+  function allGames(games) {
+    return games.length !== 0
+      ? games.map(x => <GamesCard key={x._id} game={x} />)
+      : <h3 className="no-articles">No articles yet</h3>
+  }
 
-        </div>
-        <div className="allGames">
-          <div className="allGames-info">
-            <img src="/images/avatar-1.jpg" />
-            <h6>Action</h6>
-            <h2>Zombie lang</h2>
-            <a href="#" className="details-button">Details</a>
-          </div>
-
-        </div>
-        <div className="allGames">
-          <div className="allGames-info">
-            <img src="/images/avatar-1.jpg" />
-            <h6>Action</h6>
-            <h2>MineCraft</h2>
-            <a href="#" className="details-button">Details</a>
-          </div>
-        </div>
-
-        <h3 className="no-articles">No articles yet</h3>
-      </section>
-    );
+  return (
+    <section id="catalog-page">
+      <h1>All Games</h1>
+      { loading 
+      ? <h1>Loading...</h1>
+      : allGames(games)
+      }
+    </section>
+  );
 }
 
 export default CatalogGame;
